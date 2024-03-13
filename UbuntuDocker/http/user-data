@@ -1,0 +1,29 @@
+#cloud-config
+autoinstall:
+    version: 1
+    locale: en_US
+    keyboard:
+        layout: en
+        variant: us
+    packages: [open-vm-tools, openssh-server]
+    network:
+        network:
+            version: 2
+            ethernets:
+                ens32:
+                    dhcp4: true
+    identity:
+        hostname: ubuntu-server
+        username: ubuntu
+        password: "$6$rounds=4096$vcovqkzpeZh2cFkM$bEgW1co0lJvRS8/NxpA7Q3ypeHbXy0MpSogGvsEaSobozV3dRgpcz7e3QbUh8bUH.kE0QQYhXpC5FdJFwi6pp0"
+    ssh:
+        install-server: yes
+        allow-pw: yes
+    storage:
+        layout:
+            name: lvm
+    user-data:
+        disable_root: false
+    late-commands:
+        - echo 'ubuntu ALL=(ALL) NOPASSWD:ALL' > /target/etc/sudoers.d/ubuntu
+        - curtin in-target --target=/target -- chmod 440 /etc/sudoers.d/ubuntu
