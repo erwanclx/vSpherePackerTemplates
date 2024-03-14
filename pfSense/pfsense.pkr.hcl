@@ -42,12 +42,29 @@ source "vsphere-iso" "pfSense-CE-2-7-2" {
     }
 
     // Boot Config
-    boot_command = ["e<enter><wait>","<enter><wait>", "<enter><wait>","<enter><wait>", "<enter><wait>", "<spacebar><enter><wait>", "<left><enter>", "<wait30s>", "<enter>"]
+    boot_command = [
+    "e<enter><wait>",
+    "<enter><wait>",
+    "<enter><wait5>",
+    "<enter><wait5>",
+    "<enter><wait5>",
+    "<spacebar><enter><wait>",
+    "<left><enter>",
+    "<wait30s>",
+    "<enter>",
+    "<wait1m>",
+
+    ]
+
+    // Firewall Config
+    floppy_files = ["./files/config.xml"]
+    
 
     // boot_order   = "disk,cdrom"
-    boot_wait    = "25s"
+    boot_wait    = "35s"
     iso_checksum = "none"
     iso_paths      = ["${var.iso_path}"]
+
 
     // SSH Config
     ssh_username = "${var.vm_username}"
