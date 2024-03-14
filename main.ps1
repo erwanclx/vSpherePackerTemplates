@@ -16,9 +16,10 @@ Write-Host "Building $dir"
 Set-Location $dir
 try {
     packer build -force -var-file ..\env.json .
+    Set-Location ..
 }
 catch {
     Write-Error "Error building $dir, exiting"
+    Set-Location ..
     exit 1
 }
-Set-Location ..
