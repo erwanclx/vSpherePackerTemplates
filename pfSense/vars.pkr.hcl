@@ -75,13 +75,13 @@ variable "iso_path" {
 // SSH Config
 variable "vm_username" {
   type = string
-  default = "ubuntu"
+  default = "admin"
   description = "USERNAME MUST MATCH THE USER-DATA CONTENT FILE"
 }
 
 variable "vm_password" {
   type = string
-  default = "ubuntu"
+  default = "pfsense"
   sensitive = true
   description = "PASSWORD MUST MATCH THE USER-DATA CONTENT FILE"
 }

@@ -53,11 +53,21 @@ source "vsphere-iso" "pfSense-CE-2-7-2" {
     "<wait30s>",
     "<enter>",
     "<wait1m>",
-
+    "n<enter><wait5>",
+    "vmx0<enter><wait5>",
+    "vmx1<enter><wait5>",
+    "y<enter><wait5>",
+    "<wait1m>",
+    "8<enter><wait5>",
+    "pkg install -y pfsense-pkg-Open-VM-Tools<enter><wait10s>",
+    "reboot<enter><wait1m>",
+    "14<enter><wait5>y<enter><wait5>",
+    "8<enter><wait5>",	
+    "pfctl -d<enter><wait5>",
     ]
 
     // Firewall Config
-    floppy_files = ["./files/config.xml"]
+    // floppy_files = ["./files/config.xml"]
     
 
     // boot_order   = "disk,cdrom"
