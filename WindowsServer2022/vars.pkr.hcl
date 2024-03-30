@@ -42,17 +42,17 @@ variable "vcenter_password" {
 
 variable "vcenter_cluster" {
   type = string
-  default = "Site A"
+  default = "Site AG"
 }
 
 variable "vcenter_datastore" {
   type = string
-  default = "Datasore 1 SSD"
+  default = "Datastore 2 SSD"
 }
 
 variable "vcenter_datacenter" {
   type = string
-  default = "Site Arthur"
+  default = "Site AG"
 }
 
 variable "vcenter_content_library" {
@@ -64,7 +64,7 @@ variable "vcenter_content_library" {
 
 variable "iso_path" {
   type = string
-  default = "[Datasore 1 SSD] SERVER_EVAL_x64FRE_en-us.iso"
+  default = "[Datastore 2 SSD] SERVER_EVAL_x64FRE_en-us.iso"
 }
 
 // WinRM Config

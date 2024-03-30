@@ -43,8 +43,8 @@ source "vsphere-iso" "pfSense-CE-2-7-2" {
 
     // Boot Config
     boot_command = [
-    "e<enter><wait>",
-    "<enter><wait>",
+    "e<enter><wait5>",
+    "<enter><wait5>",
     "<enter><wait5>",
     "<enter><wait5>",
     "<enter><wait5>",
@@ -60,7 +60,7 @@ source "vsphere-iso" "pfSense-CE-2-7-2" {
     "<wait1m>",
     "8<enter><wait5>",
     "pkg install -y pfsense-pkg-Open-VM-Tools<enter><wait10s>",
-    "reboot<enter><wait1m>",
+    "reboot<enter><wait1m30s>",
     "14<enter><wait5>y<enter><wait5>",
     "8<enter><wait5>",	
     "pfctl -d<enter><wait5>",
@@ -71,7 +71,7 @@ source "vsphere-iso" "pfSense-CE-2-7-2" {
     
 
     // boot_order   = "disk,cdrom"
-    boot_wait    = "35s"
+    boot_wait    = "45s"
     iso_checksum = "none"
     iso_paths      = ["${var.iso_path}"]
 

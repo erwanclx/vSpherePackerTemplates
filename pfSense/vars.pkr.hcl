@@ -47,17 +47,17 @@ variable "vcenter_password" {
 
 variable "vcenter_cluster" {
   type = string
-  default = "Site A"
+  default = "Site AG"
 }
 
 variable "vcenter_datastore" {
   type = string
-  default = "Datasore 1 SSD"
+  default = "Datastore 2 SSD"
 }
 
 variable "vcenter_datacenter" {
   type = string
-  default = "Site Arthur"
+  default = "Site AG"
 }
 
 variable "vcenter_content_library" {
@@ -69,7 +69,8 @@ variable "vcenter_content_library" {
 
 variable "iso_path" {
   type = string
-  default = "[Datasore 1 SSD] pfSense-CE-2.7.2-RELEASE-amd64.iso"
+  // default = "[Datastore 2 SSD] pfSense-CE-2.7.2-RELEASE-amd64.iso"
+  default = "[Datasore 1 SSD] ISO/pfSense-CE-2.7.2-RELEASE-amd64.iso"
 }
 
 // SSH Config
