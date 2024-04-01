@@ -1,0 +1,34 @@
+#cloud-config
+autoinstall:
+  version: 1
+  early-commands:
+  - sudo systemctl restart ssh
+  locale: en_US
+  keyboard:
+    layout: en
+    variant: us
+  packages: [open-vm-tools, openssh-server]
+  network:
+    network:
+      version: 2
+      ethernets:
+        ens32:
+          dhcp4: true
+  identity:
+    hostname: ubuntu-server
+    username: ubuntu
+    password: "$6$rounds=4096$vcovqkzpeZh2cFkM$bEgW1co0lJvRS8/NxpA7Q3ypeHbXy0MpSogGvsEaSobozV3dRgpcz7e3QbUh8bUH.kE0QQYhXpC5FdJFwi6pp0"
+
+  ssh:
+    install-server: yes
+    allow-pw: yes
+    authorized-keys:
+    - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDNb2+wYpg5eqEcQOtP70+FdtAVg2xeAYvA2auJKN3xX9M1luoetY2WvCoFFjMlE+4FQQKg6SPmk9deRApQgjKg+s0dP/rcgTJq4z4mpRXBJr51yqNbUmts8D+QZ0jdex3on5Gh1Ls2DOPRJbSlRML+ovrNAbh375KUXNbwMhD0qUnNPXVX/C/saoLfe7cxZNwAA0ou9A5Eex+ce7AqfdMPOvnoRfEgnENGOPhv7TCjWQ3etSUjC0PEUcD0wtiyx5JcQPE1CrN3KAi8ADQ/OC63a3QYf2Pg/p0TunuxIRbtJiSal5mAXUIukCpsjgrBrYHg+f2csD9aAzneEOt+/X+vH6aaWnLI4R4i5W8HgJZRE6Kk2UL4FNqy3n67JVFqjYeKiGKh98L9SUgI7vGrniNaT+ukniBTO962lgX5rEeyoKZd0CW+ywqg5Htg2YMdJUPcXxgWfQTIGsr+G8kRXyo+EZ8hQMJ9W133woIV8Bdd130o6k3wA2TICAwIqP7rXjs= erwan@DESKTOP-ERWAN
+  storage:
+    layout:
+      name: lvm
+  user-data:
+    disable_root: false
+  late-commands:
+  - echo 'ubuntu ALL=(ALL) NOPASSWD:ALL' > /target/etc/sudoers.d/ubuntu
+  - curtin in-target --target=/target -- chmod 440 /etc/sudoers.d/ubuntu

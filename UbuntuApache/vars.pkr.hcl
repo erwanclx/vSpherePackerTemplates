@@ -1,18 +1,18 @@
-# Packer Windows Server 2022
+# Packer Ubuntu 20.04 webserver
 
 variable "vm_name" {
   type    = string
-  default = "windows-server-2022-vm"
+  default = "ubuntu-20.04-webserver"
 }
 
 variable "vm_cpus" {
   type    = number
-  default = 4
+  default = 2
 }
 
 variable "vm_ram" {
   type    = number
-  default = 4096
+  default = 2048
 }
 
 variable "vm_network" {
@@ -22,7 +22,7 @@ variable "vm_network" {
 
 variable "vm_disk_size" {
   type    = number
-  default = 90000
+  default = 20480
 }
 
 // Store Config
@@ -64,20 +64,20 @@ variable "vcenter_content_library" {
 
 variable "iso_path" {
   type    = string
-  default = "[Datasore 1 SSD] ISO/SERVER_EVAL_x64FRE_en-us.iso"
+  default = "https://releases.ubuntu.com/20.04/ubuntu-20.04.6-live-server-amd64.iso"
 }
 
-// WinRM Config
+// SSH Config
 
 variable "vm_username" {
-  type    = string
-  default = "Administrator"
-  // description = "/!\ USERNAME MUST MATCH THE AUTOUNATTEND.XML CONTENT FILE /!\\"
+  type        = string
+  default     = "ubuntu"
+  description = "USERNAME MUST MATCH THE USER-DATA CONTENT FILE"
 }
 
 variable "vm_password" {
-  type      = string
-  default   = "PackerInsecurePassword"
-  sensitive = true
-  // description = "/!\ PASSWORD MUST MATCH THE AUTOUNATTEND.XML CONTENT FILE /!\\"
+  type    = string
+  default = "ubuntu"
+  // sensitive   = true
+  description = "PASSWORD MUST MATCH THE USER-DATA CONTENT FILE"
 }

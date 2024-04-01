@@ -7,7 +7,7 @@ packer {
   }
 }
 
-source "vsphere-iso" "ubuntu-20-04-docker" {
+source "vsphere-iso" "ubuntu-20-04-webserver" {
   // VM Specs
   vm_name       = "${var.vm_name}"
   CPUs          = "${var.vm_cpus}"
@@ -47,7 +47,9 @@ source "vsphere-iso" "ubuntu-20-04-docker" {
 
 
   // SSH Config
-  shutdown_command = "echo '${var.vm_username}'|sudo -S shutdown -P now"
+
+  shutdown_command = "echo ${var.vm_password}|sudo -S shutdown -P now"
+
   ssh_username     = "${var.vm_username}"
   ssh_password     = "${var.vm_password}"
   ssh_port         = 22
@@ -55,11 +57,11 @@ source "vsphere-iso" "ubuntu-20-04-docker" {
 }
 
 build {
-  sources = ["source.vsphere-iso.ubuntu-20-04-docker"]
+  sources = ["source.vsphere-iso.ubuntu-20-04-webserver"]
 
   provisioner "shell" {
-    execute_command = "echo '${var.vm_username}' | {{ .Vars }} sudo -E -S bash '{{ .Path }}'"
-    scripts         = ["scripts/install_docker.sh"]
+    execute_command = "echo ${var.vm_username} | {{ .Vars }} sudo -E -S bash '{{ .Path }}'"
+    scripts         = ["scripts/install_webserver.sh"]
   }
 
 }

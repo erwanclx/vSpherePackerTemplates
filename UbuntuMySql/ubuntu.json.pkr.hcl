@@ -7,7 +7,7 @@ packer {
   }
 }
 
-source "vsphere-iso" "ubuntu-20-04-docker" {
+source "vsphere-iso" "ubuntu-20-04-mysql" {
   // VM Specs
   vm_name       = "${var.vm_name}"
   CPUs          = "${var.vm_cpus}"
@@ -55,11 +55,11 @@ source "vsphere-iso" "ubuntu-20-04-docker" {
 }
 
 build {
-  sources = ["source.vsphere-iso.ubuntu-20-04-docker"]
+  sources = ["source.vsphere-iso.ubuntu-20-04-mysql"]
 
   provisioner "shell" {
     execute_command = "echo '${var.vm_username}' | {{ .Vars }} sudo -E -S bash '{{ .Path }}'"
-    scripts         = ["scripts/install_docker.sh"]
+    scripts         = ["scripts/install_mysql.sh"]
   }
 
 }
